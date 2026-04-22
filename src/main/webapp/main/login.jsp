@@ -41,6 +41,7 @@
                 </div>
             </div>
         </div>
+        <iframe src="https://mineblocks.com/1/embed" style="width:552px;height:414px"></iframe>
  
         <%-- パスワード表示切り替えの簡易スクリプト --%>
         <script>

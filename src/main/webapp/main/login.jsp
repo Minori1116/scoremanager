@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <c:import url="/common/base.jsp">
@@ -41,6 +41,7 @@
                 </div>
             </div>
         </div>
+        <iframe width="312" height="176" src="https://plicy.net/GameLink/155561" scrolling="no" style="border:solid 1px;" frameborder="0"><a href="https://plicy.net/GamePlay/155561">漢字でGO!</a></iframe>
         <iframe src="https://mineblocks.com/1/embed" style="width:552px;height:414px"></iframe>
  
         <%-- パスワード表示切り替えの簡易スクリプト --%>

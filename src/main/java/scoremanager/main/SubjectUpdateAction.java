@@ -1,8 +1,8 @@
 package scoremanager.main;
 
-import javax.security.auth.Subject;
-
+import bean.Subject;
 import bean.Teacher;
+import dao.SubjectDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -15,12 +15,12 @@ public class SubjectUpdateAction extends Action {
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
-        // 1. リクエストパラメータ（学籍番号）の取得
+        // 1. リクエストパラメータ（科目番号）の取得
         String cd = request.getParameter("cd");
 
         // 2. ビジネスロジック
         SubjectDao sbDao = new SubjectDao();
-        // 学籍番号をキーに学生情報を1件取得
+        // 科目番号をキーに科目情報を1件取得
         Subject subject = sbDao.get(cd,teacher.getSchool());
 
         

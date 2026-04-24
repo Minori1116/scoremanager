@@ -1,8 +1,8 @@
 package scoremanager.main;
 
-import javax.security.auth.Subject;
-
+import bean.Subject;
 import bean.Teacher;
+import dao.SubjectDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -16,12 +16,15 @@ public class SubjectUpdateExecuteAction extends Action {
         Teacher teacher = (Teacher) session.getAttribute("user");
 
         // 1. パラメータ取得
+        //科目番号
         String cd = request.getParameter("cd");
+        //科目名
         String name = request.getParameter("name");
+        
 
         // 2. Studentオブジェクトの再構築
         Subject subject = new Subject();
-        subject.setNo(cd);
+        subject.setCd(cd);
         subject.setSchool(teacher.getSchool());
         subject.setName(name);
         

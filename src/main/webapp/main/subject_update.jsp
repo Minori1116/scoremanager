@@ -12,19 +12,14 @@
                     <div class="mb-3">
                         <label class="form-label">科目番号</label>
                         <%-- 学籍番号は主キーなので編集不可（readonly） --%>
-                        <input type="text" name="subject_no" class="form-control-plaintext fw-bold" value="${subject.cd}" readonly>
+                        <input type="text" name="cd" class="form-control-plaintext fw-bold" value="${subject.cd}" readonly>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="subject-name-input">氏名</label>
-                        <input type="text" name="subject_name" id="subject-name-input" class="form-control" value="${subject.name}" required>
+                        <label class="form-label" for="subject-name-input">科目名</label>
+                        <input type="text" name="name" id="subject-name-input" class="form-control" value="${subject.name}" required>
                     </div>
 
-                    <div class="mb-4 form-check">
-                        <input type="checkbox" name="is_attend" id="subject-attend-check" class="form-check-input" value="true"
-                            <c:if test="${subject.attend}">checked</c:if>>
-                        <label class="form-check-label" for="subject-attend-check">在学中</label>
-                    </div>
 
                     <button type="submit" class="btn btn-primary px-4">変更</button>
                     <div class="mt-3">

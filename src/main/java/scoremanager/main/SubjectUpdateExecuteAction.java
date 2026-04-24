@@ -1,0 +1,36 @@
+package scoremanager.main;
+
+import javax.security.auth.Subject;
+
+import bean.Teacher;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import tool.Action;
+
+public class SubjectUpdateExecuteAction extends Action {
+
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        Teacher teacher = (Teacher) session.getAttribute("user");
+
+        // 1. パラメータ取得
+        String cd = request.getParameter("cd");
+        String name = request.getParameter("name");
+
+        // 2. Studentオブジェクトの再構築
+        Subject subject = new Subject();
+        subject.setNo(cd);
+        subject.setSchool(teacher.getSchool());
+        subject.setName(name);
+        
+
+        // 3. DAOで更新実行
+        SubjectDao sbDao = new SubjectDao();
+        sbDao.save(subject); // StudentDaoのsaveメソッドは、既存データがあればupdateするように実装されている前提です
+
+        // 4. 完了画面へ
+        return "subject_update_done.jsp";
+    }
+}

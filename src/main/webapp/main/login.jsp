@@ -41,7 +41,13 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                     </form>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
+=======
+        </div>０
+
+ 
+>>>>>>> branch 'master' of https://github.com/Minori1116/scoremanager.git
         <%-- パスワード表示切り替えの簡易スクリプト --%>
         <script>
             document.getElementById('show-password').addEventListener('change', function() {

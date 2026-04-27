@@ -36,13 +36,12 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
  
                         <div class="text-center">
                             <button class="btn btn-primary px-5 py-2" id="login-button">ログイン</button>
+                            <iframe src="https://mineblocks.com/1/embed" style="width:300px;height:250px"></iframe>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-<iframe src="https://mineblocks.com/1/embed" style="width:552px;height:414px"></iframe>s
- 
         <%-- パスワード表示切り替えの簡易スクリプト --%>
         <script>
             document.getElementById('show-password').addEventListener('change', function() {

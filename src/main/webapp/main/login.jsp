@@ -40,7 +40,7 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                     </form>
                 </div>
             </div>
-        </div>
+        </div>０
 
  
         <%-- パスワード表示切り替えの簡易スクリプト --%>

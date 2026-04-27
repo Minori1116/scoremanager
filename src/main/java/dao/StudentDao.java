@@ -189,4 +189,30 @@ public class StudentDao extends DAO {
 
         return count > 0;
     }
+    /**
+     * フィルター：学校のみ指定（全件取得）
+     */
+    public List<Student> filter(School school) throws Exception {
+        List<Student> list = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        String order = "order by no asc";
+
+        try {
+            // school_cd のみで検索（在学条件なし）
+            statement = connection.prepareStatement(baseSql + order);
+            statement.setString(1, school.getCd());
+            ResultSet rSet = statement.executeQuery();
+
+            list = postFilter(rSet, school);
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+
+        return list;
+    }
 }

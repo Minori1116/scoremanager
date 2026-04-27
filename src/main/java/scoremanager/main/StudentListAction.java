@@ -67,9 +67,9 @@ public class StudentListAction extends Action {
             // 入学年度のみ指定されている場合
             students = sDao.filter(teacher.getSchool(), entYear, isAttend);
         } else if (entYear == 0 && (classNum == null || classNum.equals("0"))) {
-            // 全指定なし（在学フラグのみ）の場合
-            students = sDao.filter(teacher.getSchool(), isAttend);
-        } else {
+            // ★ 初回表示は全生徒を表示する
+            students = sDao.filter(teacher.getSchool());
+        }else {
             errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
             students = sDao.filter(teacher.getSchool(), isAttend);
         }

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class TestSubjectListExecuteAction extends Action {
+public class TestListSubjectExecuteAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,6 +34,6 @@ public class TestSubjectListExecuteAction extends Action {
         sbDao.save(subject); // StudentDaoのsaveメソッドは、既存データがあればupdateするように実装されている前提です
 
         // 4. 完了画面へ
-        return "subject_update_done.jsp";
+        return "subject_update.jsp";
     }
 }

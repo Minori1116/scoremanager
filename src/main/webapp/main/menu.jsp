@@ -19,8 +19,10 @@
                     <div class='card-body text-center'>
                         <h4 class='mb-3'>成績管理</h4>
                         <div class='d-grid gap-2'>
+
                             <a href='TestRegist.action' class='text-decoration-none'>成績登録</a>
-                            <a href='SubjectList.action' class='text-decoration-none'>成績参照</a>
+                            <a href='TestList.action' class='text-decoration-none'>成績参照</a>
+
                         </div>
                     </div>
                 </div>

@@ -6,8 +6,10 @@
         <li class="mb-1">成績管理</li>
         <li>
             <ul class="list-unstyled ps-3">
+
                 <li class="mb-1"><a href="TestRegist.action" class="text-decoration-none">成績登録</a></li>
-                <li class="mb-1"><a href="SubjectList.action" class="text-decoration-none">成績参照</a></li>
+                <li class="mb-1"><a href="TestList.action" class="text-decoration-none">成績参照</a></li>
+
             </ul>
         </li>
         <li class="mb-2"><a href="SubjectList.action" class="text-decoration-none">科目管理</a></li>

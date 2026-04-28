@@ -1,9 +1,8 @@
-package scoremanager.kamoku;
+package scoremanager.main;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-
+import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDao;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,3 +28,4 @@ public class SubjectListAction extends Action {
         return "subject_list.jsp";
 	}
 }
+//修正したから、コミットしてプッシュ(5行目を修正した)

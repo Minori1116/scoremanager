@@ -92,25 +92,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="test_student" items="${}">
+                        <c:forEach var="test_student" items="${test_list_student}">
                             <tr>
-                                <td>${student.no}</td>
-                                <td>${student.name}</td>
-                                <td>${student.entYear}</td>
-                                <td>${student.classNum}</td>
-                                <td class="text-center">
-                                    <c:choose>
-                                        <%-- 【修正】Boolean型の getter (isAttend) は .attend で参照する --%>
-                                        <c:when test="${student.attend}">○</c:when>
-                                        <c:otherwise>×</c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
+                                <td>${test_student.name}</td>
+                                <td>${test_student.subjectCd}</td>
+                                <td>${test_student.num}</td>
+                                <td>${test_student.point}</td>
+                                
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${empty students}">
+                <c:if test="${empty test_list_student}">
                     <p>学生情報が存在しません。</p>
                 </c:if>
             </div>

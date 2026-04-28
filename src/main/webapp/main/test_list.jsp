@@ -65,7 +65,7 @@
                     <%-- 入学年度選択 --%>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
-                        <input class="form-control" type="text" id="student-id-input" name="id" 
+                        <input class="form-control" type="text" id="student-id-input" name="student_no" 
                                placeholder="学生番号を入力してください" required />
                    
                     </div>

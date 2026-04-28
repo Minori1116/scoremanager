@@ -25,7 +25,6 @@ public class TestListStudentExecuteAction extends Action {
         // Student生成
         Student student = new Student();
         student.setNo(student_no);
-        System.out.println("student_no=" + student_no);
 
         // DAO呼び出し
         TestListStudentDao dao = new TestListStudentDao();
@@ -34,6 +33,7 @@ public class TestListStudentExecuteAction extends Action {
         // JSPへ渡す
         request.setAttribute("test_student_list", test_student_list);
         request.setAttribute("student", student);
+        request.setAttribute("student_no",student_no);
 
         return "test_list_student.jsp";
     }

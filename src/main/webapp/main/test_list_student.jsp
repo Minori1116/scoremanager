@@ -65,7 +65,7 @@
                     <%-- 入学年度選択 --%>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
-                        <input class="form-control" type="text" id="student-id-input" name="id" 
+                        <input class="form-control" type="text" id="student-id-input" name="student_no" 
                                placeholder="学生番号を入力してください" required />
                    
                     </div>
@@ -92,9 +92,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="test_student" items="${test_list_student}">
+                        <c:forEach var="test_student" items="${test_student_list}">
                             <tr>
-                                <td>${test_student.name}</td>
+                                <td>${test_student.subjectName}</td>
                                 <td>${test_student.subjectCd}</td>
                                 <td>${test_student.num}</td>
                                 <td>${test_student.point}</td>
@@ -103,7 +103,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${empty test_list_student}">
+                <c:if test="${empty test_student_list}">
                     <p>学生情報が存在しません。</p>
                 </c:if>
             </div>

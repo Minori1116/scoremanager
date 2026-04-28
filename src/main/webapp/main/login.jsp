@@ -13,7 +13,7 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                     <form action="LoginExecute.action" method="post">
                         <div class="mb-3">
                             <label class="form-label text-secondary small" for="id">ＩＤ</label>
-                            <input class="form-control bg-light-blue" type="text" id="id" name="id"
+                            <input class="form-control bg-light-blue" type="texte" id="id" name="id"
                                    placeholder="admin" required>
                         </div>
                         
@@ -36,18 +36,13 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
  
                         <div class="text-center">
                             <button class="btn btn-primary px-5 py-2" id="login-button">ログイン</button>
-                            <iframe src="https://mineblocks.com/1/embed" style="width:300px;height:250px"></iframe>
                         </div>
                     </form>
                 </div>
             </div>
-<<<<<<< HEAD
         </div>
-=======
-        </div>０
 
  
->>>>>>> branch 'master' of https://github.com/Minori1116/scoremanager.git
         <%-- パスワード表示切り替えの簡易スクリプト --%>
         <script>
             document.getElementById('show-password').addEventListener('change', function() {

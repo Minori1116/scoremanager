@@ -14,11 +14,12 @@
             </div>
 
             <div class='col-md-4'>
+                
                 <div class='card h-100 shadow-sm bg-success bg-opacity-10 p-3'>
                     <div class='card-body text-center'>
                         <h4 class='mb-3'>成績管理</h4>
                         <div class='d-grid gap-2'>
-                            <a href='SubjectRegist.action' class='text-decoration-none'>成績登録</a>
+                            <a href='TestRegist.action' class='text-decoration-none'>成績登録</a>
                             <a href='SubjectList.action' class='text-decoration-none'>成績参照</a>
                         </div>
                     </div>

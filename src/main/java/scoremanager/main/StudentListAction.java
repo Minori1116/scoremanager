@@ -31,6 +31,7 @@ public class StudentListAction extends Action {
         if (classNum == null) {
             classNum = "0";
         } 
+        
         int entYear = 0;
         boolean isAttend = false;
         List<Student> students = null; // 学生リスト
@@ -45,6 +46,7 @@ public class StudentListAction extends Action {
         if (entYearStr != null && !entYearStr.equals("0")) {
             entYear = Integer.parseInt(entYearStr);
         }
+        
         // 在学中チェックボックスの判定
         if (isAttendStr != null) {
             isAttend = true;

@@ -13,7 +13,7 @@
             
 
             <%-- 絞り込みフォーム --%>
-            <form method="get" action="TestSubjectListExecute.action">
+            <form method="get" action="TestListSubjectExecute.action">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter1">
                     <%-- 入学年度選択 --%>
                     <div class="col-2">

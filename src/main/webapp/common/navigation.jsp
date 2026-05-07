@@ -13,5 +13,6 @@
             </ul>
         </li>
         <li class="mb-2"><a href="SubjectList.action" class="text-decoration-none">科目管理</a></li>
+        <li class="mb-2"><a href="ClassList.action" class="text-decoration-none">クラス管理</a></li>
     </ul>
 </div>

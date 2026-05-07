@@ -134,4 +134,27 @@ public class ClassNumDao extends DAO {
         }
         return count > 0;
     }
+    
+    public boolean delete(ClassNum classnum) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int count = 0;
+
+        try {
+            statement = connection.prepareStatement(
+                "delete from class_num where school_cd=? and class_num=?"
+            );
+            statement.setString(1, classnum.getSchool().getCd());
+            statement.setString(2, classnum.getClass_num());
+
+            count = statement.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+
+        return count > 0;
+        }
 }

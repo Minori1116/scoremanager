@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
                 <c:if test="${empty test_student_list}">
-                    <p>学生情報が存在しません。</p>
+                    <p style="color: black;">学生情報が存在しませんでした</p>
                 </c:if>
             </div>
                

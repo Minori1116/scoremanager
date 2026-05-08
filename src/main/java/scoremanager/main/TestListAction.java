@@ -7,15 +7,17 @@ import java.util.List;
 import java.util.Map;
 
 import bean.Student;
+import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
 import dao.StudentDao;
+import dao.SubjectDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
-public class StudentListAction extends Action {
+public class TestListAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -31,14 +33,19 @@ public class StudentListAction extends Action {
         if (classNum == null) {
             classNum = "0";
         } 
-        
         int entYear = 0;
         boolean isAttend = false;
+        String id=request.getParameter("id");
         List<Student> students = null; // 学生リスト
         LocalDate todaysDate = LocalDate.now(); // 今日の日付
         int year = todaysDate.getYear(); // 現在の年
         StudentDao sDao = new StudentDao(); // 学生DAO
-        ClassNumDao cDao = new ClassNumDao(); // クラス番号DAO
+        ClassNumDao cDao = new ClassNumDao();
+        SubjectDao dao = new SubjectDao();
+        
+        List<Subject> subjects = dao.filter(teacher.getSchool());
+        
+    
         Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
         // 2. ビジネスロジック
@@ -46,7 +53,6 @@ public class StudentListAction extends Action {
         if (entYearStr != null && !entYearStr.equals("0")) {
             entYear = Integer.parseInt(entYearStr);
         }
-        
         // 在学中チェックボックスの判定
         if (isAttendStr != null) {
             isAttend = true;
@@ -80,12 +86,14 @@ public class StudentListAction extends Action {
         request.setAttribute("f1", entYear);
         request.setAttribute("f2", classNum);
         request.setAttribute("f3", isAttendStr);
+        request.setAttribute("id",id);
         request.setAttribute("students", students);
         request.setAttribute("class_num_set", class_num_set);
         request.setAttribute("ent_year_set", ent_year_set);
+        request.setAttribute("subjects", subjects);// クラス番号DAO
         request.setAttribute("errors", errors);
 
         // 4. JSPのパスを返す
-        return "student_list.jsp";
+        return "test_list.jsp";
     }
 }

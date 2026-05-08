@@ -28,4 +28,3 @@ public class SubjectListAction extends Action {
         return "subject_list.jsp";
 	}
 }
-//修正したから、コミットしてプッシュ(5行目を修正した)

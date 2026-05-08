@@ -41,6 +41,8 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                 </div>
             </div>
         </div>
+        </div>
+
 
  
         <%-- パスワード表示切り替えの簡易スクリプト --%>

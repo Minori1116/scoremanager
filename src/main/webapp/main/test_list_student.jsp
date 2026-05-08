@@ -65,8 +65,9 @@
                     <%-- 入学年度選択 --%>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
-                        <input class="form-control" type="text" id="student-id-input" name="id" 
-                               placeholder="学生番号を入力してください" required />
+                        <input class="form-control" type="text" id="student-id-input" name="student_no" 
+                               placeholder="学生番号を入力してください" value="${student_no}" required />
+                               
                    
                     </div>
 
@@ -92,26 +93,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="test_student" items="${}">
+                        <c:forEach var="test_student" items="${test_student_list}">
                             <tr>
-                                <td>${student.no}</td>
-                                <td>${student.name}</td>
-                                <td>${student.entYear}</td>
-                                <td>${student.classNum}</td>
-                                <td class="text-center">
-                                    <c:choose>
-                                        <%-- 【修正】Boolean型の getter (isAttend) は .attend で参照する --%>
-                                        <c:when test="${student.attend}">○</c:when>
-                                        <c:otherwise>×</c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
+                                <td>${test_student.subjectName}</td>
+                                <td>${test_student.subjectCd}</td>
+                                <td>${test_student.num}</td>
+                                <td>${test_student.point}</td>
+                                
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${empty students}">
-                    <p>学生情報が存在しません。</p>
+                <c:if test="${empty test_student_list}">
+                    <p style="color: black;">学生情報が存在しませんでした</p>
                 </c:if>
             </div>
                

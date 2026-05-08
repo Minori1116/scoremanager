@@ -1,11 +1,16 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import bean.School;
 import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.TestListStudent;
+import dao.ClassNumDao;
 import dao.SubjectDao;
-import dao.TestDao;
 import dao.TestListStudentDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,37 +21,57 @@ public class TestListStudentExecuteAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
-       
-       
-        //科目名
-        String name=request.getParameter("name");
-        String no=request.getParameter("no");
-        String subject_name = request.getParameter("subject_name");
-        String subject_cd = request.getParameter("subject_cd");
-        int num=Integer.parseInt(request.getParameter("num"));
-        int point=Integer.parseInt(request.getParameter("point"));
+        School school = teacher.getSchool();
 
-        // 2. Studentオブジェクトの再構築
-        Subject subject = new Subject();
-        Student student=new Student();
-        TestListStudent testliststudent=new TestListStudent();
-        student.setName(name);
-        student.setNo(no);
-        subject.setName(subject_name);
-        testliststudent.setSubjectCd(subject_cd);
-        testliststudent.setNum(num);
-        testliststudent.setPoint(point);
-        TestListStudentDao teslisdao=new TestListStudentDao(); 
-        teslisdao.filter(student);
-        TestDao testdao=new TestDao();
+        // 1. JSPのプルダウン用のデータを準備 (再取得)
+        ClassNumDao cNumDao = new ClassNumDao();
+        SubjectDao sDao = new SubjectDao();
+        
+        // クラス一覧を取得
+        List<String> class_list = cNumDao.filter(school);
+        // 科目一覧を取得
+        List<Subject> subject_list = sDao.filter(school);
+        // 入学年度一覧を作成 (現在の年から10年前まで)
+        List<Integer> entYearList = new ArrayList<>();
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = year - 10; i <= year; i++) {
+            entYearList.add(i);
+        }
 
-        // 3. DAOで更新実行
-        SubjectDao sbDao = new SubjectDao();
-        sbDao.save(subject); // StudentDaoのsaveメソッドは、既存データがあればupdateするように実装されている前提です
+        // 2. 検索パラメータを取得
+        String student_no = request.getParameter("student_no");
 
-        // 4. 完了画面へ
+        // 3. 検索実行
+        List<TestListStudent> test_student_list = new ArrayList<>();
+        TestListStudentDao dao = new TestListStudentDao();
+
+        if (student_no != null && !student_no.isEmpty()) {
+            // Student生成して検索
+            Student student = new Student();
+            student.setNo(student_no);
+            student.setSchool(school);
+            test_student_list = dao.filter(student);
+        }
+
+        // 4. JSPへデータを渡す (JSPの変数を名前に合わせるのが重要)
+        
+        // 検索結果リスト
+        request.setAttribute("test_student_list", test_student_list);
+        
+        // 入力された学生番号を保持 (value="${student_no}")
+        request.setAttribute("student_no", student_no);
+        // <c:forEach var="year" items="${ent_year_set}">
+        request.setAttribute("ent_year_set", entYearList);
+        
+        // <c:forEach var="num" items="${class_num_set}">
+        request.setAttribute("class_num_set", class_list);
+        
+        // <c:forEach var="subject" items="${subjects}">
+        request.setAttribute("subjects", subject_list);
+
         return "test_list_student.jsp";
     }
 }

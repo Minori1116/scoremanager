@@ -36,5 +36,18 @@
                 </a>
             </div>
         </div>
+        
+        <div class='mt-4'></div>
+        
+        <div class='row g-4'>
+            <div class='col-md-4'>
+                <a href='ClassList.action' class='card h-100 text-center text-decoration-none shadow-sm bg-warning bg-opacity-10 py-5'>
+                    <div class='card-body d-flex align-items-center justify-content-center'>
+                        <h4 class='text-primary'>クラス管理</h4>
+                    </div>
+                </a>
+            </div>
+           </div>
+        
     " />
 </jsp:include>

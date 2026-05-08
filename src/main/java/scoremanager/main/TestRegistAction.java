@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.Test;
@@ -36,28 +37,25 @@ public class TestRegistAction extends Action {
     	if (classNum == null) {
     		classNum = "0";
         } 
-        int entYear = 0;
         
-    	List<Test> test = null; 
     	LocalDate todaysDate = LocalDate.now(); // 今日の日付
     	int year = todaysDate.getYear(); // 現在の年
     	StudentDao sDao = new StudentDao();
     	SubjectDao suDao = new SubjectDao();
     	ClassNumDao cDao = new ClassNumDao();
     	TestDao tDao = new TestDao();
+    	
     	Map<String, String> errors = new HashMap<>(); // エラーメッセージ
     	
-    	// 2. ビジネスロジック
-    	// 入学年度が選択されている場合、int型に変換
-    	if (entYearStr != null && !entYearStr.equals("0")) {
-    		entYear = Integer.parseInt(entYearStr);
+    	String search = request.getParameter("search");
+
+    	if (search != null) {  
+    		if ("0".equals(entYearStr) || "0".equals(classNum) || "0".equals(name) || "0".equals(numStr)) {
+            errors.put("msg", "入学年度とクラスと科目と回数を選択してください");
+            }
     	}
-    	
-    	int num = 0;
-        if (numStr != null && !numStr.equals("0")) {
-            num = Integer.parseInt(numStr);
-        }
-    	
+        
+    	// 2. ビジネスロジック
     	// クラス番号一覧を取得（プルダウン用）
     	List<String> class_num_set = cDao.filter(teacher.getSchool());
     	
@@ -76,13 +74,49 @@ public class TestRegistAction extends Action {
     	    num_set.add(i);
     	}
     	
-    	
+    	// 検索条件に応じた学生リストの取得
+        List<Test> results = null;
+        
+        //正常入力時のみ検索を実行
+        if (search != null && errors.isEmpty()) {
+            int entYear = Integer.parseInt(entYearStr);
+            int num = Integer.parseInt(numStr);
+
+            Subject subject = new Subject();
+            subject.setCd(name);
+            
+            
+            
+
+         //studentテーブルから該当学生を取得
+            List<Student> students = sDao.filter(teacher.getSchool(), entYear, classNum, true);
+
+            results = new ArrayList<>();
+
+            //各学生についてtestを取得（なければ空のTestを作る）
+            for (Student st : students) {
+
+                Test test = tDao.get(st, subject, teacher.getSchool(), num);
+
+                if (test == null) {
+                    test = new Test();
+                    test.setStudent(st);
+                    test.setSubject(subject);
+                    test.setSchool(teacher.getSchool());
+                    test.setNo(num);
+                    test.setPoint(0);
+                }
+
+                results.add(test);
+            }
+        }
         
     	// 3. レスポンス（JSPへ渡すデータ）の設定
     	request.setAttribute("f1", entYearStr);
     	request.setAttribute("f2", classNum);
     	request.setAttribute("f3", name);
     	request.setAttribute("f4", numStr);
+    	request.setAttribute("results", results);
     	request.setAttribute("class_num_set", class_num_set);
     	request.setAttribute("ent_year_set", ent_year_set);
     	request.setAttribute("name_set", name_set);

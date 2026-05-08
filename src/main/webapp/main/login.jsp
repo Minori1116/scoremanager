@@ -13,7 +13,7 @@ t<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
                     <form action="LoginExecute.action" method="post">
                         <div class="mb-3">
                             <label class="form-label text-secondary small" for="id">ＩＤ</label>
-                            <input class="form-control bg-light-blue" type="texte" id="id" name="id"
+                            <input class="form-control bg-light-blue" type="text" id="id" name="id"
                                    placeholder="admin" required>
                         </div>
                         

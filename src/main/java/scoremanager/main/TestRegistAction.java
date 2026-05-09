@@ -24,14 +24,11 @@ public class TestRegistAction extends Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
     	HttpSession session = request.getSession();
-    	Teacher teacher = (Teacher)session.getAttribute("user");
-    	//Student student = (Student)session.getAttribute("user");
-    	//Subject subject = (Subject)session.getAttribute("user");
-    	//Test test = (Test)session.getAttribute("user");
+    	Teacher teacher = (Teacher)session.getAttribute("user");	
 	
       	String entYearStr = request.getParameter("f1"); // 入学年度
     	String classNum = request.getParameter("f2"); // クラス
-    	String name = request.getParameter("f3"); //科目名
+    	String subjectCd = request.getParameter("f3"); //科目コード
     	String numStr = request.getParameter("f4"); //回数
     	
     	if (classNum == null) {
@@ -50,7 +47,7 @@ public class TestRegistAction extends Action {
     	String search = request.getParameter("search");
 
     	if (search != null) {  
-    		if ("0".equals(entYearStr) || "0".equals(classNum) || "0".equals(name) || "0".equals(numStr)) {
+    		if ("0".equals(entYearStr) || "0".equals(classNum) || "0".equals(subjectCd) || "0".equals(numStr)) {
             errors.put("msg", "入学年度とクラスと科目と回数を選択してください");
             }
     	}
@@ -74,6 +71,16 @@ public class TestRegistAction extends Action {
     	    num_set.add(i);
     	}
     	
+    	 String subjectName = null;
+         if (subjectCd != null && !"0".equals(subjectCd)) {
+             for (Subject s : name_set) {
+                 if (s.getCd().equals(subjectCd)) {
+                     subjectName = s.getName();
+                     break;
+                 }
+             }
+         }
+         
     	// 検索条件に応じた学生リストの取得
         List<Test> results = null;
         
@@ -83,11 +90,8 @@ public class TestRegistAction extends Action {
             int num = Integer.parseInt(numStr);
 
             Subject subject = new Subject();
-            subject.setCd(name);
+            subject.setCd(subjectCd);
             
-            
-            
-
          //studentテーブルから該当学生を取得
             List<Student> students = sDao.filter(teacher.getSchool(), entYear, classNum, true);
 
@@ -114,8 +118,10 @@ public class TestRegistAction extends Action {
     	// 3. レスポンス（JSPへ渡すデータ）の設定
     	request.setAttribute("f1", entYearStr);
     	request.setAttribute("f2", classNum);
-    	request.setAttribute("f3", name);
+    	request.setAttribute("f3", subjectCd);
     	request.setAttribute("f4", numStr);
+    	
+    	request.setAttribute("subjectName", subjectName);
     	request.setAttribute("results", results);
     	request.setAttribute("class_num_set", class_num_set);
     	request.setAttribute("ent_year_set", ent_year_set);

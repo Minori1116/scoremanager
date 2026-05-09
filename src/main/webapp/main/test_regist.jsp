@@ -43,7 +43,9 @@
                         <select class="form-select" id="student-f3-select" name="f3">
                             <option value="0">--------</option>
                             <c:forEach var="sub" items="${name_set}">
-                                <option value="${sub.name}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
+                                <option value="${sub.cd}" <c:if test="${sub.cd eq f3}">selected</c:if>>
+                                      ${sub.name}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
@@ -74,7 +76,11 @@
             <c:if test="${not empty results}">
             <form method="post" action="TestRegistExecute.action">
                 <div class="mx-3">
-                <label class ="test">科目：${f3}  (${f4}回)</label>
+                <label class ="test">科目：${subjectName}  (${f4}回)</label>
+                
+                <!-- ExecuteAction に渡す hidden -->
+                <input type="hidden" name="subject" value="${f3}">
+                <input type="hidden" name="count" value="${f4}">
                    <table class="table table-hover">
                       <thead>
                           <tr>
@@ -99,17 +105,19 @@
 		                                           value="${test.point == 0 ? '' : test.point}">
 		                             
 		                         </td>
+		                         
+		                         <!-- regist（学生番号）を送る -->
+		                         <td>
+		                              <input type="hidden" name="regist" value="${test.student.no}">
+                                 </td>
 		                     </tr>
 		                 </c:forEach>
 		               </tbody>
-                   </table> 
+                   </table>
+                   <%-- 登録ボタン --%>
+                   <input type="submit" class="btn btn-secondary" value="登録して終了">
                  </div>
               </c:if>
-              <input type="submit" class="btn btn-secondary" value="登録して終了">
-               <!--   <c:if test="${empty students}">
-                    <p>学生情報が存在しません。</p>
-                </c:if>  -->
-            
         </section>
     </c:param>
 </c:import>

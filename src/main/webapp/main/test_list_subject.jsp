@@ -88,8 +88,11 @@
                                     <td>${tls.classNum}</td>
                                     <td>${tls.studentNo}</td>
                                     <td>${tls.studentName}</td>
-                                    <td class="text-center">${tls.points.get(1) != null ? tls.points.get(1) : '-'}</td>
-                                    <td class="text-center">${tls.points.get(2) != null ? tls.points.get(2) : '-'}</td>
+									<%-- 1回目の点数 --%>
+									<td class="text-center">${tls.getPoint(1)}</td>
+									
+									<%-- 2回目の点数 --%>
+									<td class="text-center">${tls.getPoint(2)}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>

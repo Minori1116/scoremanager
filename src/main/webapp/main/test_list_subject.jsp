@@ -5,7 +5,7 @@
     <c:param name="title" value="得点管理システム" />
     <c:param name="content">
         <section class="me-4">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">成績管理（科目）</h2>
             
             <%-- 1. 科目検索フォーム --%>
             <form method="get" action="TestListSubjectExecute.action">

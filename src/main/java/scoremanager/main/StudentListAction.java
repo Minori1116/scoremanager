@@ -22,7 +22,6 @@ public class StudentListAction extends Action {
         HttpSession session = request.getSession(); // セッション
         Teacher teacher = (Teacher) session.getAttribute("user"); // ログインユーザー
         
-        
         // 1. リクエストパラメータの取得
         String entYearStr = request.getParameter("f1"); // 入学年度
         String classNum = request.getParameter("f2"); // クラス
@@ -47,7 +46,7 @@ public class StudentListAction extends Action {
             entYear = Integer.parseInt(entYearStr);
         }
         
-        // 在学中チェックボックスの判定
+        // 在学中チェックボックスの判定（f3にチェックが入っている場合のみ true）
         if (isAttendStr != null) {
             isAttend = true;
         }
@@ -61,19 +60,37 @@ public class StudentListAction extends Action {
             ent_year_set.add(i);
         }
 
-        // 検索条件に応じた学生リストの取得
+        // --- 【注目】検索条件に応じた学生リストの取得ロジック修正 ---
         if (entYear != 0 && !classNum.equals("0")) {
-            // 入学年度とクラスの両方が指定されている場合
+            // A. 入学年度とクラスの両方が指定されている場合
             students = sDao.filter(teacher.getSchool(), entYear, classNum, isAttend);
+            
         } else if (entYear != 0 && classNum.equals("0")) {
-            // 入学年度のみ指定されている場合
+            // B. 入学年度のみ指定されている場合
             students = sDao.filter(teacher.getSchool(), entYear, isAttend);
-        } else if (entYear == 0 && (classNum == null || classNum.equals("0"))) {
-            // 全指定なし（在学フラグのみ）の場合
-            students = sDao.filter(teacher.getSchool(), isAttend);
+            
+        } else if (entYearStr == null && classNum.equals("0") && isAttendStr == null) {
+            // C. 【初期表示】（すべてのパラメータが送られてきていないとき）
+            // 在学チェックの有無に関わらず、学校の全生徒（在学中も退学中もすべて）を表示する
+            // 多くの設計では、第2引数（isAttend）を false にすると全表示、または専用の全取得メソッドを呼び出します。
+            // ここでは在学不問とするため、一度DBの全データを取得するロジック（または退学含む全取得）にします。
+            students = sDao.filter(teacher.getSchool(), false); 
+            
+        } else if (entYear == 0 && classNum.equals("0")) {
+            // D. 絞り込み条件（年度・クラス）が未指定で「絞込み」ボタンが押された場合
+            if (isAttendStr != null) {
+                // 「在学中」だけにチェックしてボタンを押したなら、在学中のみ
+                students = sDao.filter(teacher.getSchool(), true);
+            } else {
+                // チェックも何もせずボタンを押したなら、全員表示
+                students = sDao.filter(teacher.getSchool(), false);
+            }
+            
         } else {
+            // E. クラスだけ選んで年度を選んでいないエラーパターン
             errors.put("f1", "クラスを指定する場合は入学年度も指定してください");
-            students = sDao.filter(teacher.getSchool(), isAttend);
+            // エラー時も全生徒（在学不問）を表示
+            students = sDao.filter(teacher.getSchool(), false);
         }
 
         // 3. レスポンス（JSPへ渡すデータ）の設定

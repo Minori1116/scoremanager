@@ -75,15 +75,21 @@ public class StudentDao extends DAO {
         List<Student> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement statement = null;
-        String condition = "and ent_year=? and class_num=? and is_attend=? ";
-        String order = "order by no asc";
+        
+        // --- 動的にSQLを組み立てる ---
+        StringBuilder sql = new StringBuilder(baseSql);
+        sql.append("and ent_year=? and class_num=? ");
+        if (isAttend) {
+            sql.append("and is_attend=true "); // チェック時のみ絞り込む
+        }
+        sql.append("order by no asc");
 
         try {
-            statement = connection.prepareStatement(baseSql + condition + order);
+            statement = connection.prepareStatement(sql.toString());
             statement.setString(1, school.getCd());
             statement.setInt(2, entYear);
             statement.setString(3, classNum);
-            statement.setBoolean(4, isAttend);
+            
             ResultSet rSet = statement.executeQuery();
             list = postFilter(rSet, school);
         } catch (Exception e) {
@@ -102,14 +108,20 @@ public class StudentDao extends DAO {
         List<Student> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement statement = null;
-        String condition = "and ent_year=? and is_attend=? ";
-        String order = "order by no asc";
+        
+        // --- 動的にSQLを組み立てる ---
+        StringBuilder sql = new StringBuilder(baseSql);
+        sql.append("and ent_year=? ");
+        if (isAttend) {
+            sql.append("and is_attend=true "); // チェック時のみ絞り込む
+        }
+        sql.append("order by no asc");
 
         try {
-            statement = connection.prepareStatement(baseSql + condition + order);
+            statement = connection.prepareStatement(sql.toString());
             statement.setString(1, school.getCd());
             statement.setInt(2, entYear);
-            statement.setBoolean(3, isAttend);
+            
             ResultSet rSet = statement.executeQuery();
             list = postFilter(rSet, school);
         } catch (Exception e) {
@@ -128,13 +140,18 @@ public class StudentDao extends DAO {
         List<Student> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement statement = null;
-        String condition = "and is_attend=? ";
-        String order = "order by no asc";
+        
+        // --- 動的にSQLを組み立てる ---
+        StringBuilder sql = new StringBuilder(baseSql);
+        if (isAttend) {
+            sql.append("and is_attend=true "); // チェック時のみ絞り込む
+        }
+        sql.append("order by no asc");
 
         try {
-            statement = connection.prepareStatement(baseSql + condition + order);
+            statement = connection.prepareStatement(sql.toString());
             statement.setString(1, school.getCd());
-            statement.setBoolean(2, isAttend);
+            
             ResultSet rSet = statement.executeQuery();
             list = postFilter(rSet, school);
         } catch (Exception e) {

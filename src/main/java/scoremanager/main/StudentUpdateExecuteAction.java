@@ -19,6 +19,14 @@ public class StudentUpdateExecuteAction extends Action {
         String no = request.getParameter("no");
         String name = request.getParameter("name");
         String classNum = request.getParameter("class_num");
+        
+        // 【追加】入学年度パラメータの取得と数値への変換
+        String entYearStr = request.getParameter("ent_year");
+        int entYear = 0;
+        if (entYearStr != null && !entYearStr.isEmpty()) {
+            entYear = Integer.parseInt(entYearStr);
+        }
+
         // チェックボックスが未チェックの場合は null になるため判定が必要
         boolean isAttend = request.getParameter("is_attend") != null;
 
@@ -29,6 +37,9 @@ public class StudentUpdateExecuteAction extends Action {
         student.setClassNum(classNum);
         student.setAttend(isAttend);
         student.setSchool(teacher.getSchool());
+        
+        // 【追加】Studentクラスに入学年度を設定する
+        student.setEntYear(entYear); 
 
         // 3. DAOで更新実行
         StudentDao sDao = new StudentDao();

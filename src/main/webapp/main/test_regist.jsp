@@ -100,9 +100,12 @@
 		                         <td>${test.student.no}</td>
 		                         <td>${test.student.name}</td>
 		                         <td>
-		                             <input class="form-control" type="text"
-		                                           name="point_${test.student.no}"
-		                                           value="${test.point == 0 ? '' : test.point}">
+									<input class="form-control" type="number"
+									       name="point_${test.student.no}"
+									       value="${test.point == 0 ? '' : test.point}"
+									       min="0" max="100" 
+									       oninvalid="this.setCustomValidity('0〜100の範囲で数値を入力してください。')"
+									       oninput="this.setCustomValidity('')">
 		                             
 		                         </td>
 		                         

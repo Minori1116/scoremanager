@@ -27,7 +27,7 @@
 
                     <%-- 学籍番号（未入力時はバルーン、重複時は文字表示） --%>
                     <div class="mb-3">
-                        <label class="form-label" for="student-no-input">学籍番号</label>
+                        <label class="form-label" for="student-no-input">学生番号</label>
                         <input type="text" name="no" id="student-no-input" class="form-control" 
                                value="${no}" placeholder="学籍番号を入力してください" required>
                         <%-- ② 学生番号重複エラーの表示用 --%>

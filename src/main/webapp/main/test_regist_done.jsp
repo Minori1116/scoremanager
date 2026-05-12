@@ -15,7 +15,7 @@
             
                 <a href="TestRegist.action" class="btn btn-primary px-4">戻る</a>
             
-                <a href="TestRegistExecute.action" class="btn btn-primary px-4">成績参照</a>
+                <a href="TestList.action" class="btn btn-primary px-4">成績参照</a>
                 
                 </div>
             </div>
@@ -23,4 +23,4 @@
     </c:param>
 </c:import>
 
-<%--修正するかも--%>
+<%--18行目を修正(参照に飛べるようにした)--%>

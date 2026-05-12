@@ -67,7 +67,7 @@ public class TestRegistAction extends Action {
     	//List<Test> num_set = new ArrayList<>();
     	//List<Test> num_set = tDao.filter(teacher.getSchool());
     	List<Integer> num_set = new ArrayList<>();
-    	for (int i = 1; i <= 5; i++) {
+    	for (int i = 1; i <= 2; i++) {
     	    num_set.add(i);
     	}
     	

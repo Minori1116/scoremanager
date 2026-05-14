@@ -15,6 +15,9 @@
             <%-- 絞り込みフォーム --%>
             <form method="get" action="TestListSubjectExecute.action">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter1">
+                	<div class="col-2">
+                    	<p>科目情報</p>
+                    </div>
                     <%-- 入学年度選択 --%>
                     <div class="col-2">
                         <label class="form-label" for="student-f1-select">入学年度</label>
@@ -37,13 +40,12 @@
                         </select>
                     </div>
 
-                    <%-- 在学中チェック --%>
-                    <div class="col-2">
-                        <label class="form-label" for="subject-f4-select">科目</label>
-                        <select class="form-select" id="subject-f4-select" name="f4">
+                    <div class="col-3">
+                        <label class="form-label">科目</label>
+                        <select class="form-select" name="f3"> <%-- ここが f3 である必要があります --%>
                             <option value="0">--------</option>
                             <c:forEach var="subject" items="${subjects}">
-                                <option value="${subject.name}">${subject.name}</option>
+                                <option value="${subject.cd}" ${subject.cd == f3 ? 'selected' : ''}>${subject.name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -51,7 +53,7 @@
 
                     <%-- 絞り込みボタン --%>
                     <div class="col-2 text-center">
-                        <button class="btn btn-secondary" id="filter-button">検索</button>
+                        <button type="submit" class="btn btn-secondary" id="filter-button">検索</button>
                     </div>
                     
                     <%-- エラーメッセージ表示用 --%>
@@ -62,10 +64,12 @@
             
             <form method="get" action="TestListStudentExecute.action">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter2">
-                    <%-- 入学年度選択 --%>
+                   <div class="col-2">
+                    	<p>学生情報</p>
+                    </div>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
-                        <input class="form-control" type="text" id="student-id-input" name="student_no" 
+                        <input class="form-control" type="text" id="student-id-input" name="f4" 
                                placeholder="学生番号を入力してください" value="${student_no}" required />
                                
                    
@@ -73,7 +77,7 @@
 
                     <%-- 絞り込みボタン --%>
                     <div class="col-2 text-center">
-                        <button class="btn btn-secondary" id="filter-button">検索</button>
+                        <button type="submit" class="btn btn-secondary" id="filter-button">検索</button>
                     </div>
                     
                     <%-- エラーメッセージ表示用 --%>

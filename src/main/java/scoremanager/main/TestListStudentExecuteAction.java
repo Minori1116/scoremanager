@@ -17,11 +17,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tool.Action;
 
+
 public class TestListStudentExecuteAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+    	System.out.println("★★ Action が呼ばれた ★★");
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
         School school = teacher.getSchool();
@@ -42,19 +43,29 @@ public class TestListStudentExecuteAction extends Action {
         }
 
         // 2. 検索パラメータを取得
-        String student_no = request.getParameter("student_no");
+        String student_no = request.getParameter("f4");
+        System.out.println("★ student_no = " + student_no);
+
 
         // 3. 検索実行
-        List<TestListStudent> test_student_list = new ArrayList<>();
-        TestListStudentDao dao = new TestListStudentDao();
+        
 
-        if (student_no != null && !student_no.isEmpty()) {
+        if (student_no == null){student_no="";}
+        
+        List<TestListStudent> test_student_list = null;
+        TestListStudentDao dao = new TestListStudentDao();
             // Student生成して検索
+        if (!student_no.isEmpty()) {
             Student student = new Student();
             student.setNo(student_no);
             student.setSchool(school);
             test_student_list = dao.filter(student);
+            
+            if (test_student_list == null || test_student_list.isEmpty()) {
+                request.setAttribute("message", "学生情報が存在しませんでした");
+            }
         }
+        
 
         // 4. JSPへデータを渡す (JSPの変数を名前に合わせるのが重要)
         
@@ -71,6 +82,14 @@ public class TestListStudentExecuteAction extends Action {
         
         // <c:forEach var="subject" items="${subjects}">
         request.setAttribute("subjects", subject_list);
+        
+        request.setAttribute("f1", null);
+        request.setAttribute("f2", null);
+        request.setAttribute("f3", null);
+        request.setAttribute("f4", student_no);
+
+        
+        
 
         return "test_list_student.jsp";
     }

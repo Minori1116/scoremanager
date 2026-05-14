@@ -15,16 +15,16 @@
                         <input type="text" name="no" class="form-control-plaintext fw-bold" value="${student.no}" readonly>
                     </div>
 
-                    <%-- 【追加】入学年度の編集項目 --%>
+                    <%-- 【修正】入学年度を変更出来ないようにした --%>
                     <div class="mb-3">
                         <label class="form-label" for="student-ent-year-input">入学年度</label>
-                        <input type="number" name="ent_year" id="student-ent-year-input" class="form-control" 
-                               value="${student.entYear}" min="2000" max="2100" required>
+                        <input type="text" name="ent_year" class="form-control-plaintext fw-bold" value="${student.entYear}" readonly>
                     </div>
 
+                    <%--最大文字数を30文字までに書き加えた(追加で) --%>
                     <div class="mb-3">
                         <label class="form-label" for="student-name-input">氏名</label>
-                        <input type="text" name="name" id="student-name-input" class="form-control" value="${student.name}" required>
+                        <input type="text" name="name" id="student-name-input" class="form-control" value="${student.name}" maxlength="30" required>
                     </div>
 
                     <div class="mb-3">

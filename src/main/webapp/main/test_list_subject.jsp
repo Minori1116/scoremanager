@@ -66,7 +66,7 @@
                 <%-- メッセージ（未選択時や0件時） --%>
                 <c:choose>
                     <c:when test="${not empty message}">
-                        <p class="text-danger mt-4">${message}</p>
+                        <p class="text-dark mt-4">${message}</p>
                     </c:when>
                     <c:when test="${empty tests}">
                         <p class="text-info mt-4">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>

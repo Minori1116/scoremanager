@@ -5,14 +5,13 @@
     <c:param name="title" value="得点管理システム" />
     
     <c:param name="content">
-        <section class="me-4 text-center">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">登録完了</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
             <div class="mt-5">
-                <p>学生情報の登録が完了しました。</p>
+            <section class="me-4 text-center">
+                <p>登録が完了しました</p></section>
                 <div class="mt-4">
-                    <a href="StudentList.action" class="btn btn-primary">学生一覧へ戻る</a>
+                    <a href="StudentCreate.action">戻る</a>　　　　　<a href="StudentList.action">学生一覧</a>
                 </div>
             </div>
-        </section>
     </c:param>
 </c:import>

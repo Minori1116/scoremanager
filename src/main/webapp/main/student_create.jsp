@@ -25,11 +25,11 @@
                         </c:if>
                     </div>
 
-                    <%-- 学籍番号（未入力時はバルーン、重複時は文字表示） --%>
+                    <%-- 学生番号（未入力時はバルーン、重複時は文字表示） --%>
                     <div class="mb-3">
                         <label class="form-label" for="student-no-input">学生番号</label>
                         <input type="text" name="no" id="student-no-input" class="form-control" 
-                               value="${no}" placeholder="学籍番号を入力してください" required>
+                               value="${no}" placeholder="学生番号を入力してください" maxlength="10" required>
                         <%-- ② 学生番号重複エラーの表示用 --%>
                         <c:if test="${not empty errors.get('no')}">
                             <div class="text-warning small mt-1">${errors.get("no")}</div>
@@ -40,7 +40,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="student-name-input">氏名</label>
                         <input type="text" name="name" id="student-name-input" class="form-control" 
-                               value="${name}" placeholder="氏名を入力してください" required>
+                               value="${name}" placeholder="氏名を入力してください" maxlength="30" required>
                     </div>
 
                     <%-- クラス --%>
@@ -54,7 +54,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-secondary px-4">登録して終了</button>
+                    <button type="submit" class="btn btn-secondary px-4" name="end">登録して終了</button>
                     <div class="mt-3">
                         <a href="StudentList.action">戻る</a>
                     </div>

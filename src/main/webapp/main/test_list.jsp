@@ -11,6 +11,9 @@
             <form method="get" action="TestListSubjectExecute.action">
                 <div class="row border mx-3 mb-3 py-3 align-items-center rounded bg-light">
                     <div class="col-2">
+                    	<p>科目情報</p>
+                    </div>
+                    <div class="col-2">
                         <label class="form-label">入学年度</label>
                         <select class="form-select" name="f1">
                             <option value="0">--------</option>
@@ -50,10 +53,14 @@
             <%-- 2. 学生番号による検索フォーム --%>
             <form method="get" action="TestListStudentExecute.action">
                 <div class="row border mx-3 mb-3 py-3 align-items-center rounded bg-light">
+                    <div class="col-2">
+                    	<p>学生情報</p>
+                    </div>
                     <div class="col-4">
                         <label class="form-label">学生番号</label>
                         <%-- 【重要】Action側の受け取り名に合わせて student_no に設定 --%>
-                        <input class="form-control" type="text" name="student_no" placeholder="学生番号を入力してください" value="${student_no}" required />
+                        <input class="form-control" type="text" name="f4"  maxlength="10" 
+                        placeholder="学生番号を入力してください" value="${f4}" required />
                     </div>
 
                     <div class="col-2 text-center mt-4">

@@ -19,7 +19,7 @@ public class TestListStudentDao extends DAO {
             + "sj.name as subject_name, sj.cd as subject_cd, "
             + "t.no as test_no, t.point "
             + "from test t "
-            + "inner join subject sj on t.subject_cd = sj.cd and t.school_cd = sj.school_cd "
+            + "inner join subject sj on t.subject_cd = sj.cd "
             + "where t.student_no = ? "
             + "order by sj.cd asc, t.no asc";
 

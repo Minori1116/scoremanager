@@ -57,44 +57,51 @@
                     <div class="mt-2 text-danger">${errors.get("f1")}</div>
                 </div>
             </form>
-
-            <%-- 一覧テーブル --%>
-            <div class="mx-3">
-                <table class="table table-hover">
-                    <thead>
-                   
-                        <tr>
-                            <th>学籍番号</th>
-                            <th>氏名</th>
-                            <th>入学年度</th>
-                            <th>クラス</th>
-                            <th class="text-center">在学中</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="student" items="${students}">
-                            <tr>
-                                <td>${student.no}</td>
-                                <td>${student.name}</td>
-                                <td>${student.entYear}</td>
-                                <td>${student.classNum}</td>
-                                <td class="text-center">
-                                    <c:choose>
-                                        <%-- 【修正】Boolean型の getter (isAttend) は .attend で参照する --%>
+            
+            <c:choose>
+                <c:when test="${students.size()>0}">
+                    <div>検索結果：${students.size()}件</div>
+                    
+                    <%-- 一覧テーブル --%>
+                    <div class="mx-3">
+                         <table class="table table-hover">
+                             <thead>
+                                 <tr>
+                                    <th>入学年度</th>
+                                    <th>学生番号</th>
+                                    <th>氏名</th>
+                                    <th>クラス</th>
+                                    <th class="text-center">在学中</th>
+                                    <th></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                <c:forEach var="student" items="${students}">
+                                   <tr>
+                                      <td>${student.entYear}</td>
+                                      <td>${student.no}</td>
+                                      <td>${student.name}</td>
+                                      <td>${student.classNum}</td>
+                                      <td class="text-center">
+                                      <c:choose>
+                                        <%-- Boolean型の getter (isAttend) は .attend で参照する --%>
                                         <c:when test="${student.attend}">○</c:when>
                                         <c:otherwise>×</c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <c:if test="${empty students}">
-                    <p>学生情報が存在しません。</p>
-                </c:if>
-            </div>
+                                      </c:choose>
+                                      </td>
+                                      <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
+                                   </tr>
+                               </c:forEach>
+                             </tbody>
+                             </table>
+                    </div>
+                </c:when>
+                
+                <%-- 学生データが空の場合 --%>
+                <c:otherwise>
+                    <div>学生情報が存在しませんでした</div>
+                </c:otherwise>
+           </c:choose>
         </section>
     </c:param>
 </c:import>

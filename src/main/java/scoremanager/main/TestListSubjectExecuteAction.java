@@ -65,7 +65,7 @@ public class TestListSubjectExecuteAction extends Action {
         request.setAttribute("f1", entYear);
         request.setAttribute("f2", classNum);
         request.setAttribute("f3", subjectCd);
-        request.setAttribute("student_no", null);;
+        request.setAttribute("student_no", null);
 
         // ★ここが重要：プルダウン用のリスト(ent_year_set等)をセットするために呼ぶ
         new TestListAction().execute(request, response);

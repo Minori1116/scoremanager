@@ -81,37 +81,53 @@
                     </div>
                     
                     <%-- エラーメッセージ表示用 --%>
-                    <div class="mt-2 text-danger">${errors.get("f1")}</div>
+                    <div class="mt-2 text-dark">${errors.get("f1")}</div>
                 </div>
             </form>
             
-            <div class="mx-3">
-                <table class="table table-hover">
-                    <thead>
-                   
-                        <tr>
-                            <th>科目名</th>
-                            <th>科目コード</th>
-                            <th>回数</th>
-                            <th>点数</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="test_student" items="${test_student_list}">
-                            <tr>
-                                <td>${test_student.subjectName}</td>
-                                <td>${test_student.subjectCd}</td>
-                                <td>${test_student.num}</td>
-                                <td>${test_student.point}</td>
-                                
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <c:if test="${empty test_student_list}">
-                    <p style="color: black;">学生情報が存在しませんでした</p>
-                </c:if>
-            </div>
+			<div class="mx-3">
+
+			    <!-- ③ 学生番号が存在しない -->
+			    <c:if test="${student_exists == false}">
+			        <p class="text-dark">学生情報が存在しませんでした</p>
+			    </c:if>
+			
+			    <!-- ①② 学生番号が存在する場合は氏名を表示 -->
+			    <c:if test="${student_exists == true}">
+			        <p class="fw-bold mt-4">氏名：${student_name}（${student_no}）</p>
+			    </c:if>
+			
+			    <!-- ① 成績がある場合 -->
+			    <c:if test="${student_exists == true and has_score == true}">
+			        <table class="table table-hover">
+			            <thead>
+			                <tr>
+			                    <th>科目名</th>
+			                    <th>科目コード</th>
+			                    <th>回数</th>
+			                    <th>点数</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <c:forEach var="test_student" items="${test_student_list}">
+			                    <tr>
+			                        <td>${test_student.subjectName}</td>
+			                        <td>${test_student.subjectCd}</td>
+			                        <td>${test_student.num}</td>
+			                        <td>${test_student.point}</td>
+			                    </tr>
+			                </c:forEach>
+			            </tbody>
+			        </table>
+			    </c:if>
+			
+			    <!-- ② 成績がない場合 -->
+			    <c:if test="${student_exists == true and has_score == false}">
+			        <p class="text-dark">成績情報が存在しませんでした</p>
+			    </c:if>
+			
+			</div>
+
                
                
 

@@ -43,10 +43,18 @@
                             </c:forEach>
                         </select>
                     </div>
+                    
 
                     <div class="col-2 text-center mt-4">
                         <button class="btn btn-secondary px-4">検索</button>
                     </div>
+                    <!-- ★ 科目情報の枠の中にエラーメッセージを表示する -->
+					<c:if test="${not empty message}">
+					    <div class="mt-3">
+					        <p class="text-danger">${message}</p>
+					    </div>
+					</c:if>
+                    
                 </div>
             </form>
             
@@ -71,14 +79,21 @@
             
             <%-- メッセージ表示エリア --%>
             <div class="mx-3">
-                <c:choose>
-                    <c:when test="${not empty message}">
-                        <p class="text-danger mt-4">${message}</p>
-                    </c:when>
-                    <c:otherwise>
-                        <p class="text-info mt-4">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
-                    </c:otherwise>
-                </c:choose>
+				<div class="mx-3 mt-3">
+			
+			    <!-- 学生検索でデータが無かった場合 -->
+			    	<c:if test="${empty tests and not empty f4}">
+			        	<p class="text-dark">学生情報が存在しませんでした</p>
+			    	</c:if>
+			
+			    <!-- ★ 初期表示メッセージ（常に表示） -->
+			    	<p class="text-info mt-2">
+			        	科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
+			    	</p>
+			
+				</div>
+
+
             </div>
         </section>
     </c:param>

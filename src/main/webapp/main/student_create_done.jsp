@@ -8,10 +8,13 @@
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
             <div class="mt-5">
             <section class="me-4 text-center">
-                <p>登録が完了しました</p></section>
+            <div class="alert alert-success text-center py-2" role="alert" style="background-color: #a3cfbb; border: none; color: #0f5132;">
+                <p>登録が完了しました</p>
+            </div>
+            </section>
                 <div class="mt-4">
                     <a href="StudentCreate.action">戻る</a>　　　　　<a href="StudentList.action">学生一覧</a>
                 </div>
-            </div>
+            
     </c:param>
 </c:import>

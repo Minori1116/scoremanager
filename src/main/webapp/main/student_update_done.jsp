@@ -10,12 +10,14 @@
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-start">学生情報変更</h2>
             
             <div class="mt-5">
-                <p class="fs-4">変更に成功しました</p>
+                <div class="alert alert-success text-center py-2" role="alert" style="background-color: #a3cfbb; border: none; color: #0f5132;">
+                <p class="fs-4">変更が完了しました</p>
+                </div>
             </div>
             
-            <div class="mt-4">
-                <a href="StudentList.action" class="btn btn-secondary px-4">戻る</a>
-            </div>
         </section>
+            <div class="mt-4">
+                <a href="StudentList.action" >学生一覧</a>
+            </div>
     </c:param>
 </c:import>

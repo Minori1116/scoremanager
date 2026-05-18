@@ -128,7 +128,7 @@ public class TestRegistAction extends Action {
     	request.setAttribute("name_set", name_set);
     	request.setAttribute("num_set", num_set);
     	request.setAttribute("errors", errors);
-    	
+    	    	
     	// 4. JSPのパスを返す
     	return "test_regist.jsp";
     }

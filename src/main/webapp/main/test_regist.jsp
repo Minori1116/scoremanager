@@ -76,7 +76,7 @@
             <c:if test="${not empty results}">
             <form method="post" action="TestRegistExecute.action">
                 <div class="mx-3">
-                <label class ="test">科目：${subjectName}  (${f4}回)</label>
+                <div><label class ="test">科目：${subjectName}  (${f4}回)</label></div>
                 
                 <!-- ExecuteAction に渡す hidden -->
                 <input type="hidden" name="subject" value="${f3}">
@@ -95,17 +95,21 @@
 		              <tbody>
 		                 <c:forEach var="test" items="${results}">
 		                     <tr>
-		                         <td>${test.student.entYear}</td>
+		                         <th>${test.student.entYear}</th>
 		                         <td>${test.student.classNum}</td>
 		                         <td>${test.student.no}</td>
 		                         <td>${test.student.name}</td>
 		                         <td>
-									<input class="form-control" type="number"
+									<input class="form-control" type="text"
 									       name="point_${test.student.no}"
 									       value="${test.point == 0 ? '' : test.point}"
-									       min="0" max="100" 
-									       oninvalid="this.setCustomValidity('0〜100の範囲で数値を入力してください。')"
+									      <%--  min="0" max="100" --%>
+									       inputmode="numeric"
+                                           pattern="^([0-9]|[1-9][0-9]|100)$" 
+									       oninvalid="this.setCustomValidity('0〜100の範囲で入力してください')"
 									       oninput="this.setCustomValidity('')">
+									<div class="mt-2 text-danger">${error}</div>
+									       
 		                             
 		                         </td>
 		                         

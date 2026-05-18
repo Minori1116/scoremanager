@@ -1,4 +1,3 @@
-
 package scoremanager.main;
 
 import bean.Teacher;

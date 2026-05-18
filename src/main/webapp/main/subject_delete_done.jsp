@@ -6,15 +6,17 @@
     <c:param name="title" value="得点管理システム" />
     
     <c:param name="content">
-        <section class="me-4 text-center">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-start">科目情報削除</h2>
+        <section class="me-4">
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
             
-            <div class="mt-5">
-                <p class="fs-4">削除が完了しました</p>
-            </div>
-            
-            <div class="mt-4">
-                <a href="SubjectList.action" class="btn btn-secondary px-4">科目一覧</a>
+            <div class="mx-3 mt-4">
+                <div class="alert alert-success text-center py-2" role="alert" style="background-color: #a3cfbb; border: none; color: #0f5132;">
+                    削除が完了しました
+                </div>
+                
+                <div class="mt-5">
+                    <a href="SubjectList.action" class="text-decoration-underline text-primary">科目一覧</a>
+                </div>
             </div>
         </section>
     </c:param>

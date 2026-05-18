@@ -53,6 +53,6 @@ public class SubjectCreateExecuteAction extends Action {
         sDao.save(subject);
 
         // 成功時の遷移先（一覧画面）を返す
-        return "SubjectList.action";
+        return "subject_create_done.jsp";
     }
 }

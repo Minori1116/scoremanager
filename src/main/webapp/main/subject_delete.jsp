@@ -13,10 +13,10 @@
 			            <p>「${subject.name}(${subject.cd})」を削除してもよろしいですか</p>
 			        </div>
 			
-			        <!-- ★ これを追加！ -->
+
 			        <input type="hidden" name="cd" value="${subject.cd}">
 			
-			        <button type="submit" class="btn btn-primary px-4">削除</button>
+			        <button type="submit" class="btn btn-danger px-4">削除</button>
 			        <div class="mt-3">
 			            <a href="SubjectList.action">戻る</a>
 			        </div>

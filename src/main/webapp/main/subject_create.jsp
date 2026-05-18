@@ -31,7 +31,7 @@
                         <label class="form-label" for="subject-name-input">科目名</label>
                         <input class="form-control" type="text" id="subject-name-input" name="name" 
                                value="${name}" <%-- 入力した値を保持させる --%>
-                               placeholder="科目名を入力してください" required />
+                               placeholder="科目名を入力してください" maxlength="20" required />
                     </div>
 
                     <div class="mt-4">

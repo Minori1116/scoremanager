@@ -79,6 +79,7 @@
                 <div><label class ="test">科目：${subjectName}  (${f4}回)</label></div>
                 
                 <!-- ExecuteAction に渡す hidden -->
+                <input type="hidden" name="num" value="${f2}">
                 <input type="hidden" name="subject" value="${f3}">
                 <input type="hidden" name="count" value="${f4}">
                    <table class="table table-hover">

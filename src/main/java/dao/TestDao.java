@@ -132,8 +132,8 @@ public class TestDao extends DAO {
      */
     private boolean save(Test test, Connection connection) throws SQLException {
         int count = 0;
-        String sql = "merge into test (student_no, subject_cd, school_cd, no, point) "
-                   + "key (student_no, subject_cd, school_cd, no) values (?, ?, ?, ?, ?)";
+        String sql = "merge into test (student_no, subject_cd, school_cd, no, point,class_num) "
+                   + "key (student_no, subject_cd, school_cd, no) values (?, ?, ?, ?, ?,?)";
         
         // 注: MERGE文が使えない環境の場合は get で存在確認して INSERT or UPDATE に分岐
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -142,6 +142,7 @@ public class TestDao extends DAO {
             statement.setString(3, test.getSchool().getCd());
             statement.setInt(4, test.getNo());
             statement.setInt(5, test.getPoint());
+            statement.setString(6, test.getStudent().getClassNum());
             count = statement.executeUpdate();
         }
         return count > 0;

@@ -25,6 +25,7 @@ public class TestRegistExecuteAction extends Action {
         String[] students = request.getParameterValues("regist");
         String subjectCd = request.getParameter("subject");
         int count = Integer.parseInt(request.getParameter("count"));
+        String num=request.getParameter("num");
 
         List<Test> list = new ArrayList<>();
 
@@ -48,6 +49,7 @@ public class TestRegistExecuteAction extends Action {
                 // 学生
                 Student student = new Student();
                 student.setNo(studentNo);
+                student.setClassNum(num);
                 test.setStudent(student);
 
                 // 科目
@@ -62,6 +64,8 @@ public class TestRegistExecuteAction extends Action {
                 // 回数・点数
                 test.setNo(count);
                 test.setPoint(point);
+                
+                test.setClassNum(num);
 
                 list.add(test);
             }

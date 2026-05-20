@@ -26,53 +26,46 @@ public class TestListSubjectExecuteAction extends Action {
         String classNum = request.getParameter("f2");
         String subjectCd = request.getParameter("f3");
 
-        // 【デバッグ用】コンソールで値を確認（動かない時にEclipseで見てください）
-        System.out.println("f1:" + entYearStr + " f2:" + classNum + " f3:" + subjectCd);
-
         // 2. 入力チェック (未入力項目がある場合)
         if (entYearStr == null || entYearStr.equals("0") || 
             classNum == null || classNum.equals("0") || 
             subjectCd == null || subjectCd.equals("0") || subjectCd.isEmpty()) {
             
             request.setAttribute("message", "入学年度とクラスと科目を選択してください");
-            // リストを再セットして検索画面(test_list.jsp)に戻る
             return new TestListAction().execute(request, response);
         }
 
-        // 3. 数値変換とデータ取得準備
+        // 3. データの準備
         int entYear = Integer.parseInt(entYearStr);
         SubjectDao sDao = new SubjectDao();
         Subject subject = sDao.get(subjectCd, school);
 
-        // 科目が存在しない場合の安全策
         if (subject == null) {
             request.setAttribute("message", "指定された科目が見つかりません");
             return new TestListAction().execute(request, response);
         }
 
-        // 4. 成績データの取得
+        // 4. 成績データの取得 (修正版DAOを呼び出し)
+        // ※DAO側で TEST テーブルの class_num を取得するように設定してください
         TestListSubjectDao tlsDao = new TestListSubjectDao();
         List<TestListSubject> tests = tlsDao.filter(entYear, classNum, subject, school);
 
-        // 5. 検索結果が0件の場合
+        // 5. 検索結果のチェック
         if (tests == null || tests.isEmpty()) {
             request.setAttribute("message", "学生情報が存在しませんでした");
         }
 
         // 6. リクエスト属性のセット (JSPへ渡すデータ)
-        request.setAttribute("tests", tests);
-        request.setAttribute("subject_name", subject.getName());
+        request.setAttribute("tests", tests); // 仕様書No.2
+        request.setAttribute("subject", subject); // 仕様書No.1表示用
         request.setAttribute("f1", entYear);
         request.setAttribute("f2", classNum);
         request.setAttribute("f3", subjectCd);
-        request.setAttribute("student_no", null);
 
-        // ★ここが重要：プルダウン用のリスト(ent_year_set等)をセットするために呼ぶ
+        // プルダウン再セット用
         new TestListAction().execute(request, response);
 
-        // 7. 表示するJSPの決定
-        // testsが空でも、このActionの役割は「結果表示画面」へ行くことなので
-        // return先は test_list_subject.jsp に固定します
+        // 7. 結果表示画面へ遷移
         return "test_list_subject.jsp";
     }
 }

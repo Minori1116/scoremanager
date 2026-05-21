@@ -8,14 +8,13 @@
     <c:param name="content">
         <section class="me-4 text-center">
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 text-start">科目情報変更</h2>
-            
-            <div class="mt-5">
+            <div class="alert alert-success text-center py-2" role="alert" style="background-color: #a3cfbb; border: none; color: #0f5132;">
                 <p class="fs-4">変更が完了しました</p>
             </div>
             
-            <div class="mt-4">
-                <a href="SubjectList.action" class="btn btn-secondary px-4">科目完了</a>
-            </div>
         </section>
+            <div class="mt-4">
+                <a href="SubjectList.action" >科目一覧</a>
+            </div>
     </c:param>
 </c:import>

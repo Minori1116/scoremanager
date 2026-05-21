@@ -14,7 +14,7 @@
             </div>
             
             <div class="mt-4">
-                <a href="SubjectList.action" class="btn btn-secondary px-4">戻る</a>
+                <a href="SubjectList.action" class="btn btn-secondary px-4">科目完了</a>
             </div>
         </section>
     </c:param>

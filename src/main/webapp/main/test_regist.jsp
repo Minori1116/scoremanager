@@ -102,7 +102,7 @@
 		                         <td>${test.student.no}</td>
 		                         <td>${test.student.name}</td>
 		                         <td>
-									<input class="form-control" type="text"
+									<input class="form-control" type="number"
 									       name="point_${test.student.no}"
 									       value="${not empty pointMap[test.student.no]
                                                     ? pointMap[test.student.no]

@@ -3,9 +3,9 @@
 
 <div class="container-fluid d-flex justify-content-between align-items-center">
     <%-- 左側：タイトル --%>
-    <a href="Menu.action" class="text-decoration-none text-dark">
+
         <h1 class="h3 mb-0">得点管理システム</h1>
-    </a>
+
 
     <%-- 右側：ユーザー情報 --%>
     <div class="d-flex align-items-center">

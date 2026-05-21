@@ -75,7 +75,7 @@
 
                 <%-- 検索結果テーブル --%>
                 <c:if test="${not empty tests}">
-                    <p class="fw-bold mt-4">科目：${subject_name}</p>
+                    <p class="fw-bold mt-4">科目：${subject.name}</p>
                     <table class="table table-hover mt-2">
                         <thead>
                             <tr class="border-bottom border-dark">

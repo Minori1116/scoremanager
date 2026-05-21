@@ -1,7 +1,9 @@
 package scoremanager.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import bean.School;
 import bean.Student;
@@ -28,10 +30,13 @@ public class TestRegistExecuteAction extends Action {
         String num=request.getParameter("num");
 
         List<Test> list = new ArrayList<>();
+        
+        Map<String, String> pointMap = new HashMap<>();
 
         for (String studentNo : students) {
 
             String pointStr = request.getParameter("point_" + studentNo);
+            pointMap.put(studentNo, pointStr);
 
             // 未入力はスキップ
             if (pointStr != null && !pointStr.isEmpty()) {
@@ -40,8 +45,14 @@ public class TestRegistExecuteAction extends Action {
 
                 // 0～100チェック
                 if (point < 0 || point > 100) {
-                    request.setAttribute("error", "0〜100の範囲で入力してください");
-                    return "test_regist.jsp";
+                    session.setAttribute("errorMsg", "0〜100の範囲で入力してください");
+                    session.setAttribute("pointMap", pointMap);
+                    return "TestRegist.action?search=1"
+                    + "&f1=" + request.getParameter("f1")
+                    + "&f2=" + num
+                    + "&f3=" + subjectCd
+                    + "&f4=" + count;
+            
                 }
 
                 Test test = new Test();

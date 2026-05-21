@@ -79,6 +79,7 @@
                 <div><label class ="test">科目：${subjectName}  (${f4}回)</label></div>
                 
                 <!-- ExecuteAction に渡す hidden -->
+                <input type="hidden" name="f1" value="${f1}">
                 <input type="hidden" name="num" value="${f2}">
                 <input type="hidden" name="subject" value="${f3}">
                 <input type="hidden" name="count" value="${f4}">
@@ -103,13 +104,14 @@
 		                         <td>
 									<input class="form-control" type="text"
 									       name="point_${test.student.no}"
-									       value="${test.point == 0 ? '' : test.point}"
-									      <%--  min="0" max="100" --%>
-									       inputmode="numeric"
-                                           pattern="^([0-9]|[1-9][0-9]|100)$" 
-									       oninvalid="this.setCustomValidity('0〜100の範囲で入力してください')"
-									       oninput="this.setCustomValidity('')">
-									<div class="mt-2 text-danger">${error}</div>
+									       value="${not empty pointMap[test.student.no]
+                                                    ? pointMap[test.student.no]
+                                                    : test.point == 0 ? '' : test.point}"
+									       inputmode="numeric">
+									 
+									      <c:if test="${not empty errorMsg}">
+                                                 <div class="mt-2 text-warning">${errorMsg}</div>
+                                          </c:if>
 									       
 		                             
 		                         </td>

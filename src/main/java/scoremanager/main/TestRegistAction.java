@@ -26,6 +26,20 @@ public class TestRegistAction extends Action {
     	HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");	
 	
+    	String errorMsg =
+    		    (String)session.getAttribute("errorMsg");
+
+    		request.setAttribute("errorMsg", errorMsg);
+
+    		session.removeAttribute("errorMsg");
+    		
+    		Map<String, String> pointMap =
+    			    (Map<String, String>)session.getAttribute("pointMap");
+
+    			request.setAttribute("pointMap", pointMap);
+
+    			session.removeAttribute("pointMap");
+    			
       	String entYearStr = request.getParameter("f1"); // 入学年度
     	String classNum = request.getParameter("f2"); // クラス
     	String subjectCd = request.getParameter("f3"); //科目コード

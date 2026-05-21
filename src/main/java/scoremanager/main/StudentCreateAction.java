@@ -24,7 +24,7 @@ public class StudentCreateAction extends Action {
 
         int year = LocalDate.now().getYear();
         List<Integer> ent_year_set = new ArrayList<>();
-        for (int i = year - 10; i <= year; i++) {
+        for (int i = year - 10; i <= year+10; i++) {
             ent_year_set.add(i);
         }
 

@@ -17,7 +17,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="subject-name-input">科目名</label>
-                        <input type="text" name="name" id="subject-name-input" class="form-control" value="${subject.name}" required>
+                        <input type="text" name="name" id="subject-name-input" class="form-control" value="${subject.name}" maxlength="20" required>
                     </div>
 
 

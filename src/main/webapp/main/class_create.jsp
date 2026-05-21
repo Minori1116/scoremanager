@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="class-name-input">クラス</label>
                         <input class="form-control" type="text" id="class-name-input" name="class_num" 
-                               placeholder="クラスを入力してください" required />
+                               placeholder="クラスを入力してください" required maxlength="3"/>
                     </div>
 
                     

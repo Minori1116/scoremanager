@@ -14,13 +14,13 @@
                         <div class="mb-3">
                             <label class="form-label text-secondary small" for="id">ＩＤ</label>
                             <input class="form-control bg-light-blue" type="text" id="id" name="id"
-                                   placeholder="admin" required>
+                                   placeholder="admin" required maxlength="10">
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label text-secondary small" for="password">パスワード</label>
                             <input class="form-control bg-light-blue" type="password" id="password" name="password"
-                                   placeholder="･･････" required>
+                                   placeholder="･･････" required maxlength="30">
                         </div>
  
                         <div class="form-check d-flex justify-content-center mb-4">
